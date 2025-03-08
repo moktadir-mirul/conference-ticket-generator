@@ -27,7 +27,7 @@
     </style>
 </head>
 <body class="incon ">
-    <!-- <main class="min-h-screen mx-auto back-ground text-center pb-14">
+    <main class="min-h-screen mx-auto back-ground text-center pb-14">
         <div class="py-5 lg:py-10">
             <img class="w-60 md:w-80 mx-auto" src="images/logo-full.svg" alt="Conference Logo">
         </div>
@@ -39,11 +39,22 @@
                 We've emailed your ticket to <span id="user-mail"></span> and will send updates in the run up to the event.
             </p>
         </div>
-        <div class="w-11/12 md:w-6/12 mx-auto h-72 bg-[url(./images/pattern-ticket.svg)] bg-no-repeat bg-center bg-contain">
-            <div>
-                <img id="ticket-img" src="" alt="">
-            </div>   
+        <div class="w-11/12 md:w-6/12 mx-auto h-96 p-5 bg-transparent bg-[url(./images/pattern-ticket.svg)] bg-no-repeat bg-center bg-cover flex flex-col justify-between relative">
+                <div class="space-y-2 text-left text-gray-300">
+                    <img class="w-6/12" src="images/logo-full.svg" alt="Conference Logo">
+                    <p class="indent-20">March 31 2025 / Uttara , Dhaka</p>
+                </div>
+                <div class="flex gap-4 relative bottom-0 left-0 text-gray-200">
+                    <img id="ticket-img" src="images/image-avatar.jpg" alt="" class="w-16 rounded-xl">
+                    <div>
+                        <h1 id="ticket-person" class="font-bold text-2xl">Mirul Moktadir khan</h1>
+                        <p class="flex gap-2">
+                            <img src="images/icon-github.svg" alt="">
+                            <span id="ticket-gitname">@mirul-moktadir</span>
+                        </p>
+                    </div>
+                </div> 
+                <!-- <span id="ticket-no" class="absolute  text-gray-400 text-2xl rotate-90">#937463</span> -->
         </div>
-        <script src="./script/action.js"></script> -->
 </body>
 </html>
