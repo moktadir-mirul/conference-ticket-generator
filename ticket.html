@@ -24,6 +24,15 @@
             background-size: 20%, cover, 50%, 50%, cover;
             background-position: center, top, left bottom, right top, center;
         }
+        .ticket-container {
+            background-image: url("./images/pattern-ticket.svg");
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            background-size: contain;
+            max-width: 500px;
+            aspect-ratio: 600/280;
+            padding: 8px;
+        }
     </style>
 </head>
 <body class="incon ">
@@ -33,18 +42,18 @@
         </div>
         <div class="text-center space-y-5 mb-5 lg:mb-10">
             <h1 class="font-bold text-4xl md:text-7xl text-white w-9/12 mx-auto">
-                Congrats, <span id="user-name"></span>! your ticket has been ready.
+                Congrats, <span id="user-name" class="text-transparent bg-clip-text bg-gradient-to-br from-[#F57261] to-gray-200">SOme name</span>! your ticket has been ready.
             </h1>
             <p class="text-gray-400 text-xl font-medium">
                 We've emailed your ticket to <span id="user-mail"></span> and will send updates in the run up to the event.
             </p>
         </div>
-        <div class="w-11/12 md:w-6/12 mx-auto h-96 p-5 bg-transparent bg-[url(./images/pattern-ticket.svg)] bg-no-repeat bg-center bg-cover flex flex-col justify-between relative">
-                <div class="space-y-2 text-left text-gray-300">
+        <div class="ticket-container flex flex-col justify-between">
+                <header class="space-y-2 text-left text-gray-300">
                     <img class="w-6/12" src="images/logo-full.svg" alt="Conference Logo">
                     <p class="indent-20">March 31 2025 / Uttara , Dhaka</p>
-                </div>
-                <div class="flex gap-4 relative bottom-0 left-0 text-gray-200">
+                </header>
+                <footer class="flex gap-4 relative bottom-0 left-0 text-gray-200">
                     <img id="ticket-img" src="images/image-avatar.jpg" alt="" class="w-16 rounded-xl">
                     <div>
                         <h1 id="ticket-person" class="font-bold text-2xl">Mirul Moktadir khan</h1>
@@ -53,8 +62,8 @@
                             <span id="ticket-gitname">@mirul-moktadir</span>
                         </p>
                     </div>
-                </div> 
-                <!-- <span id="ticket-no" class="absolute  text-gray-400 text-2xl rotate-90">#937463</span> -->
+                </footer> 
+                <span id="ticket-no" class="absolute  text-gray-400 text-2xl rotate-90">#937463</span>
         </div>
 </body>
 </html>
