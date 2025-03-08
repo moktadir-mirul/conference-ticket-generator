@@ -8,7 +8,7 @@ form.addEventListener("submit", function (event) {
   const ticketTitle = document.getElementById("user-name");
   const ticketMail = document.getElementById("user-mail");
   const ticketImg = document.getElementById("ticket-img");
-  const gitUserName = document.getElementById("git-name");
+  const gitUserName = document.getElementById("git-name").value;
   const formPage = document.getElementById("form-page");
   const ticketPage = document.getElementById("ticket-page");
   const ticketPersonName = document.getElementById("ticket-person");
@@ -25,7 +25,7 @@ form.addEventListener("submit", function (event) {
   ticketTitle.innerText = title;
   ticketMail.innerText = email;
   ticketPersonName.innerText = title;
-//   gitName.innerText = gitUserName.value;
+  gitName.innerText = gitUserName;
   const reader = new FileReader(); // Create a FileReader object
 
   reader.onload = function (e) {

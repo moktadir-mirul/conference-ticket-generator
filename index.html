@@ -32,6 +32,7 @@
             max-width: 500px;
             aspect-ratio: 600/280;
             padding: 8px;
+            backdrop-filter: blur, 100px;
         }
     </style>
 </head>
@@ -57,7 +58,7 @@
                     <h1 class="text-left text-gray-300">Your Email</h1>
                     <input id="email" type="email" name="" id="" class="placeholder:text-gray-300 rounded-lg h-10 indent-2" placeholder="example@email.com" >
                     <h1 class="text-left text-gray-300">Github User Name</h1>
-                    <input id="githubName" type="text" name="" placeholder="@YourUserName" id="git-name" class="rounded-lg h-10 indent-2 placeholder:text-gray-300" >
+                    <input type="text" name="" placeholder="@YourUserName" id="git-name" class="rounded-lg h-10 indent-2 placeholder:text-gray-300" >
                     <input type="submit" class="btn btn-lg w-full bg-rose-500 text-black text-base font-bold border-none mb-5 shadow-none hover:bg-rose-800 duration-200 rounded-lg" id="submit-btn" value="Generate my ticket">
             </form>
         </div>
