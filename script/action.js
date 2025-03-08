@@ -14,6 +14,7 @@ form.addEventListener("submit", function (event) {
   const ticketPersonName = document.getElementById("ticket-person");
   const gitName = document.getElementById('ticket-gitname');
   const onTicketImage = document.getElementById('ticket-img');
+  const ticketNo = document.getElementById('ticket-no');
   event.preventDefault();
   console.log("hello");
   console.log(imageFile);
@@ -35,6 +36,10 @@ form.addEventListener("submit", function (event) {
 
   reader.readAsDataURL(imageFile); // Read the file as a data URL
   // ticketImg.setAttribute('src', image)
+  const number = Math.floor(Math.random()*99999);
+  console.log(number);
+  ticketNo.innerText = "#" + number;
+  
   formPage.classList.add("hidden");
   ticketPage.classList.remove("hidden");
 });

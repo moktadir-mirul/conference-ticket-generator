@@ -31,13 +31,13 @@
             background-size: contain;
             max-width: 500px;
             aspect-ratio: 600/280;
-            padding: 8px;
+            padding: 20px;
             backdrop-filter: blur, 100px;
         }
     </style>
 </head>
 <body class="incon">
-    <main class="min-h-screen mx-auto back-ground text-center">
+    <main class="min-h-screen mx-auto back-ground text-center pb-10">
         <div class="py-5 lg:py-10">
             <img class="w-60 md:w-80 mx-auto" src="images/logo-full.svg" alt="Conference Logo">
         </div>
@@ -54,12 +54,12 @@
                     <h1 class="text-left text-gray-300">Upload Avatar(file type must be .jpg format and under 1MB)</h1>
                     <input id="avatar" type="file" class="text-left file-input file-input-ghost" />
                     <h1 class="text-left text-gray-300 mt-5">Full Name</h1>
-                    <input id="title" type="text" name="" id="" class="rounded-lg h-10" >
+                    <input id="title" type="text" name="" id="" class="indent-2 rounded-lg h-10 focus:border focus:border-gray-200" >
                     <h1 class="text-left text-gray-300">Your Email</h1>
                     <input id="email" type="email" name="" id="" class="placeholder:text-gray-300 rounded-lg h-10 indent-2" placeholder="example@email.com" >
                     <h1 class="text-left text-gray-300">Github User Name</h1>
                     <input type="text" name="" placeholder="@YourUserName" id="git-name" class="rounded-lg h-10 indent-2 placeholder:text-gray-300" >
-                    <input type="submit" class="btn btn-lg w-full bg-rose-500 text-black text-base font-bold border-none mb-5 shadow-none hover:bg-rose-800 duration-200 rounded-lg" id="submit-btn" value="Generate my ticket">
+                    <input type="submit" class="btn btn-lg w-full bg-[#F57261] text-black text-base font-bold border-none mb-5 shadow-none hover:bg-rose-800 duration-200 rounded-lg" id="submit-btn" value="Generate my ticket">
             </form>
         </div>
         <div id="ticket-page" class="hidden">
@@ -68,10 +68,10 @@
                     Congrats, <span id="user-name"></span>! your ticket has been ready.
                 </h1>
                 <p class="text-gray-400 text-xl font-medium">
-                    We've emailed your ticket to <span id="user-mail"></span> and will send updates in the run up to the event.
+                    We've emailed your ticket to <span id="user-mail" class="text-[#F57261]"></span> and will send updates in the run up to the event.
                 </p>
             </div>
-            <div class="ticket-container flex flex-col justify-between ">
+            <div class="relative ticket-container flex flex-col justify-between">
                 <header class="space-y-2 text-left text-gray-300">
                     <img class="w-6/12" src="images/logo-full.svg" alt="Conference Logo">
                     <p class="indent-20">March 31 2025 / Uttara , Dhaka</p>
@@ -86,7 +86,7 @@
                         </p>
                     </div>
                 </footer> 
-                <span id="ticket-no" class="absolute  text-gray-400 text-2xl rotate-90">#937463</span>
+                <span id="ticket-no" class="absolute top-24 right-0 text-gray-400 text-2xl rotate-90">#10610</span>
         </div>
         </div>
     </main>
