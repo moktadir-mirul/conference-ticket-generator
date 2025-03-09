@@ -10,6 +10,23 @@ const form = document.querySelector("form");
       document.body.addEventListener(item, preventDefaults, false);
   })
 
+//   ['dragenter', 'dragover'].forEach(eventName => {
+//     dropArea.addEventListener(eventName, highlight, false);
+// });
+
+// Reset the drop area when the item is no longer over it
+// ['dragleave', 'drop'].forEach(eventName => {
+//     dropArea.addEventListener(eventName, unhighlight, false);
+// });
+
+  dropArea.addEventListener('dragenter', function() {
+    dropArea.classList.add('high-light');
+  }, false);
+  dropArea.addEventListener('dragover', function() {
+    dropArea.classList.add('high-light');
+  }, false);
+  dropArea.addEventListener('dragleave', unhighlight, false);
+  dropArea.addEventListener('drop', unhighlight, false);
 
   dropArea.addEventListener('drop', handleDrop, false);
   dropArea.addEventListener('click', () => {
@@ -23,6 +40,14 @@ const form = document.querySelector("form");
       e.preventDefault();
       e.stopPropagation();
   }
+
+  function highlight() {
+    dropArea.classList.add('high-light');
+}
+
+function unhighlight() {
+    dropArea.classList.remove('high-light');
+}
 
 
   function handleDrop (e) {
