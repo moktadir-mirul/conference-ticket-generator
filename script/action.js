@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-document.addEventListener('DOMContentLoaded', () => {
+
   const dropArea = document.getElementById('input-area');
   const fileInput = document.getElementById('file-input');
   const imagePre = document.getElementById('check-img');
@@ -12,9 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   dropArea.addEventListener('drop', handleDrop, false);
-  dropArea.addEventListener('click', () => fileInput.click());
+  dropArea.addEventListener('click', () => {
+    fileInput.click()});
 
-  fileInput.addEventListener('change', handleFiles, false);
+  fileInput.addEventListener('change', (e) => {
+    const files = e.target.files;
+    handleFiles(files)});
   
   function preventDefaults(e) {
       e.preventDefault();
@@ -23,17 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function handleDrop (e) {
-    e.preventDefault();
+      e.preventDefault();
       let data = e.dataTransfer;
       let files = data.files;
-      console.log(files, "files");
-      
       handleFiles(files);
   }
 
-  function handleFiles(files){
-      const file = files[0];
-      console.log(files, "handlefiles");
+  function handleFiles(allFiles){
+      console.log(arguments);
+      const file = allFiles[0];
+      console.log(allFiles, "handlefiles");
       console.log(file, "only file");
       
       
@@ -45,15 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
           onTicketImage.src = reader.result;
       }
       } else {
-        console.log('something wrong');
-        
+        alert('image type wrong')
       }
       // reader.onload = function () {
       //     imagePre.src = reader.result;
       //     onTicketImage.src = reader.result;
       // }
   }
-})
+
 
 
 form.addEventListener("submit", function (event) {

@@ -55,6 +55,8 @@
                 <h1 class="text-left text-gray-300">Upload Avatar(file type must be .jpg format and under 1MB)</h1>
                 <div id="input-area" class="p-10 mt-20 w-96 mx-auto h-40 border-2 border-dashed border-gray-100 hover:border-red-500">
                     <h1>Drag and drop your file or Click to upload</h1>
+                    <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files)" style="display: none;">
+                    <label for="fileElem" id="fileLabel">or Click to Select File</label>
                 </div>
                 <input type="file" id="file-input" class="hidden">
                 <img class="my-3 border border-gray-200 w-72 h-52 mx-auto" src="" alt="Image preview" id="check-img">
