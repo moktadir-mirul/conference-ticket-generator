@@ -1,53 +1,47 @@
-const form = document.getElementById("img-handler");
-document.addEventListener('DOMContentLoaded', () => {
-    const dropArea = document.getElementById('input-area');
-    const fileInput = document.getElementById('file-input');
-    const imagePre = document.getElementById('check-img');
 
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((item) => {
-        dropArea.addEventListener(item, preventDefaults, false);
-        document.body.addEventListener(item, preventDefaults, false);
-    })
-    let arr1 = ['dragenter', 'dragover']
-    arr1.forEach((item) => {
-        dropArea.classList.add('hover')
-    })
-    let arr2 = ['dragleave', 'drop']
-    arr2.forEach((item) => {
-        dropArea.classList.remove('hover')
-    })
+// document.addEventListener('DOMContentLoaded', () => {
+//     const dropArea = document.getElementById('input-area');
+//     const fileInput = document.getElementById('file-input');
+//     const imagePre = document.getElementById('check-img');
 
-    dropArea.addEventListener('drop', handleDrop, false);
-    dropArea.addEventListener('click', () => fileInput.click());
+//     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((item) => {
+//         dropArea.addEventListener(item, preventDefaults, false);
+//         document.body.addEventListener(item, preventDefaults, false);
+//     })
+//     let arr1 = ['dragenter', 'dragover']
+//     arr1.forEach((item) => {
+//         dropArea.classList.add('hover')
+//     })
+//     let arr2 = ['dragleave', 'drop']
+//     arr2.forEach((item) => {
+//         dropArea.classList.remove('hover')
+//     })
 
-    fileInput.addEventListener('change', handleFiles, false);
-    function preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-    function highlight() {
-        dropArea.classList.add('hover');
-    }
+//     dropArea.addEventListener('drop', handleDrop, false);
+//     dropArea.addEventListener('click', () => fileInput.click());
 
-    function unhighlight() {
-        dropArea.classList.remove('hover');
-    }
+//     fileInput.addEventListener('change', handleFiles, false);
+//     function preventDefaults(e) {
+//         e.preventDefault();
+//         e.stopPropagation();
+//     }
 
-    function handleDrop (e) {
-        let data = e.dataTransfer;
-        let files = data.files;
-        handleFiles(files);
-    }
 
-    function handleFiles(files){
-        const file = files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            imagePre.src = reader.result;
-        }
-    }
-})
+//     function handleDrop (e) {
+//         let data = e.dataTransfer;
+//         let files = data.files;
+//         handleFiles(files);
+//     }
+
+//     function handleFiles(files){
+//         const file = files[0];
+//         const reader = new FileReader();
+//         reader.readAsDataURL(file);
+//         reader.onload = function () {
+//             imagePre.src = reader.result;
+//         }
+//     }
+// })
 
 // document.addEventListener('DOMContentLoaded', () => {
 //     const dropArea = document.getElementById('drop-area');
