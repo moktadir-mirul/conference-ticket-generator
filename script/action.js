@@ -19,8 +19,7 @@ const form = document.querySelector("form");
   dropArea.addEventListener('drop', unhighlight, false);
 
   dropArea.addEventListener('drop', handleDrop, false);
-  dropArea.addEventListener('click', () => {
-    fileInput.click()});
+  dropArea.addEventListener('click', clickInput);
 
   fileInput.addEventListener('change', (e) => {
     dragDrop.classList.add('hidden');
@@ -31,6 +30,10 @@ const form = document.querySelector("form");
   function preventDefaults(e) {
       e.preventDefault();
       e.stopPropagation();
+  }
+
+  function clickInput () {
+    fileInput.click();
   }
 
   function highlight() {
@@ -72,9 +75,19 @@ function unhighlight() {
       //     imagePre.src = reader.result;
       //     onTicketImage.src = reader.result;
       // }
+      dropArea.removeEventListener('click', clickInput);
   }
 
-
+  function changeImage() {
+    clickInput();
+  }
+  function removeImage() {
+    imagePre.src = 'images/icon-upload.svg';
+    onTicketImage.src = '';
+    dragDrop.classList.remove('hidden');
+    imgBtns.classList.add('hidden');
+    dropArea.addEventListener("click", clickInput, false);
+  }
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
