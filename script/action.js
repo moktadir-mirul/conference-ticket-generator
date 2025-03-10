@@ -4,27 +4,17 @@ const form = document.querySelector("form");
   const fileInput = document.getElementById('file-input');
   const imagePre = document.getElementById('check-img');
   const onTicketImage = document.getElementById('ticket-img');
+  const dragDrop = document.getElementById('drag-drop');
+  const imgBtns = document.getElementById('img-btns');
 
   ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((item) => {
       dropArea.addEventListener(item, preventDefaults, false);
       document.body.addEventListener(item, preventDefaults, false);
   })
 
-//   ['dragenter', 'dragover'].forEach(eventName => {
-//     dropArea.addEventListener(eventName, highlight, false);
-// });
 
-// Reset the drop area when the item is no longer over it
-// ['dragleave', 'drop'].forEach(eventName => {
-//     dropArea.addEventListener(eventName, unhighlight, false);
-// });
-
-  dropArea.addEventListener('dragenter', function() {
-    dropArea.classList.add('high-light');
-  }, false);
-  dropArea.addEventListener('dragover', function() {
-    dropArea.classList.add('high-light');
-  }, false);
+  dropArea.addEventListener('dragenter', highlight, false);
+  dropArea.addEventListener('dragover', highlight, false);
   dropArea.addEventListener('dragleave', unhighlight, false);
   dropArea.addEventListener('drop', unhighlight, false);
 
@@ -33,6 +23,8 @@ const form = document.querySelector("form");
     fileInput.click()});
 
   fileInput.addEventListener('change', (e) => {
+    dragDrop.classList.add('hidden');
+      imgBtns.classList.remove('hidden');
     const files = e.target.files;
     handleFiles(files)});
   
@@ -43,7 +35,7 @@ const form = document.querySelector("form");
 
   function highlight() {
     dropArea.classList.add('high-light');
-}
+  }
 
 function unhighlight() {
     dropArea.classList.remove('high-light');
@@ -55,6 +47,8 @@ function unhighlight() {
       let data = e.dataTransfer;
       let files = data.files;
       handleFiles(files);
+      dragDrop.classList.add('hidden');
+      imgBtns.classList.remove('hidden');
   }
 
   function handleFiles(allFiles){
