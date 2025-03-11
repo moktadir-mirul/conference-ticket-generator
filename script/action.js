@@ -19,7 +19,7 @@ const form = document.querySelector("form");
   dropArea.addEventListener('drop', unhighlight, false);
 
   dropArea.addEventListener('drop', handleDrop, false);
-  dropArea.addEventListener('click', clickInput);
+  // dropArea.addEventListener('click', clickInput);
 
   fileInput.addEventListener('change', (e) => {
     dragDrop.classList.add('hidden');
@@ -54,7 +54,7 @@ function unhighlight() {
       imgBtns.classList.remove('hidden');
   }
 
-  function handleFiles(allFiles){
+  function handleFiles(allFiles = ['icon-upload.svg']){
       console.log(arguments);
       const file = allFiles[0];
       console.log(allFiles, "handlefiles");
@@ -67,15 +67,21 @@ function unhighlight() {
         reader.onload = function () {
           imagePre.src = reader.result;
           onTicketImage.src = reader.result;
+          dropArea.removeAttribute("onClick");
       }
-      } else {
+      } else if(onTicketImage.src === '') {
+        dropArea.setAttribute('onClick', 'clickInput()'); 
+        
+        
+      }  else {
         alert('image type wrong')
       }
       // reader.onload = function () {
       //     imagePre.src = reader.result;
       //     onTicketImage.src = reader.result;
       // }
-      dropArea.removeEventListener('click', clickInput);
+      // dropArea.removeEventListener('click', clickInput);
+      
   }
 
   function changeImage() {
@@ -85,8 +91,8 @@ function unhighlight() {
     imagePre.src = 'images/icon-upload.svg';
     onTicketImage.src = '';
     dragDrop.classList.remove('hidden');
-    imgBtns.classList.add('hidden');
-    dropArea.addEventListener("click", clickInput, false);
+    imgBtns.classList.add('hidden');    
+    handleFiles()    
   }
 
 form.addEventListener("submit", function (event) {
