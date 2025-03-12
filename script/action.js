@@ -6,6 +6,8 @@ const form = document.querySelector("form");
   const onTicketImage = document.getElementById('ticket-img');
   const dragDrop = document.getElementById('drag-drop');
   const imgBtns = document.getElementById('img-btns');
+  const changeBtn = document.getElementById('change-imgBtn');
+  const removeBtn = document.getElementById('rmv-img');
 
   ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((item) => {
       dropArea.addEventListener(item, preventDefaults, false);
@@ -54,7 +56,7 @@ function unhighlight() {
       imgBtns.classList.remove('hidden');
   }
 
-  function handleFiles(allFiles = ['icon-upload.svg']){
+  function handleFiles(allFiles){
       console.log(arguments);
       const file = allFiles[0];
       console.log(allFiles, "handlefiles");
@@ -62,38 +64,34 @@ function unhighlight() {
       
       
       const reader = new FileReader();
-      if(file) {
+      
         reader.readAsDataURL(file);
         reader.onload = function () {
           imagePre.src = reader.result;
           onTicketImage.src = reader.result;
-          dropArea.removeAttribute("onClick");
-      }
-      } else if(onTicketImage.src === '') {
-        dropArea.setAttribute('onClick', 'clickInput()'); 
-        
-        
-      }  else {
-        alert('image type wrong')
-      }
+          
+     
+      dropArea.removeAttribute("onClick");
+    }
+  }
       // reader.onload = function () {
       //     imagePre.src = reader.result;
       //     onTicketImage.src = reader.result;
       // }
       // dropArea.removeEventListener('click', clickInput);
-      
-  }
+  
 
   function changeImage() {
-    clickInput();
+    clickInput(); 
   }
-  function removeImage() {
+  removeBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
     imagePre.src = 'images/icon-upload.svg';
     onTicketImage.src = '';
-    dragDrop.classList.remove('hidden');
-    imgBtns.classList.add('hidden');    
-    handleFiles()    
-  }
+    dragDrop.classList.remove('hidden');  
+    imgBtns.classList.add('hidden');
+    dropArea.setAttribute('onClick', 'clickInput()');
+  })
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
