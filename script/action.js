@@ -25,7 +25,7 @@ const form = document.querySelector("form");
 
   fileInput.addEventListener('change', (e) => {
     dragDrop.classList.add('hidden');
-      imgBtns.classList.remove('hidden');
+    imgBtns.classList.remove('hidden');
     const files = e.target.files;
     handleFiles(files)});
   
@@ -55,24 +55,32 @@ function unhighlight() {
       dragDrop.classList.add('hidden');
       imgBtns.classList.remove('hidden');
   }
+  
+  let imgArr = [];
 
   function handleFiles(allFiles){
       console.log(arguments);
       const file = allFiles[0];
       console.log(allFiles, "handlefiles");
       console.log(file, "only file");
+      imgArr.push(file);
       
+    if(imgArr.length <= 0) {
+        removeImage();
+        return;
+    }
+    const reader = new FileReader();
       
-      const reader = new FileReader();
-      
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(imgArr[0]);
+        
         reader.onload = function () {
+          
           imagePre.src = reader.result;
           onTicketImage.src = reader.result;
           
      
-      dropArea.removeAttribute("onClick");
-    }
+        dropArea.removeAttribute("onClick");
+      }
   }
       // reader.onload = function () {
       //     imagePre.src = reader.result;
@@ -84,6 +92,14 @@ function unhighlight() {
   function changeImage() {
     clickInput(); 
   }
+ const  removeImage = () => {
+    imagePre.src = 'images/icon-upload.svg';
+    onTicketImage.src = '';
+    dragDrop.classList.remove('hidden');  
+    imgBtns.classList.add('hidden');
+    dropArea.setAttribute('onClick', 'clickInput()');
+    imgArr.pop();
+ }
   removeBtn.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -92,43 +108,55 @@ function unhighlight() {
     dragDrop.classList.remove('hidden');  
     imgBtns.classList.add('hidden');
     dropArea.setAttribute('onClick', 'clickInput()');
+    imgArr.pop();
+    console.log(imgArr);
+  })
+
+  document.getElementById("title").addEventListener('keyup', (e) => {
+    document.getElementById('title-err').classList.add('hidden');
   })
 
 form.addEventListener("submit", function (event) {
-    event.preventDefault();
-  const imageFile = document.getElementById("avatar");
+  event.preventDefault();
   const title = document.getElementById("title").value;
   const email = document.getElementById("email").value;
   const ticketTitle = document.getElementById("user-name");
   const ticketMail = document.getElementById("user-mail");
-  const ticketImg = document.getElementById("ticket-img");
   const gitUserName = document.getElementById("git-name").value;
   const formPage = document.getElementById("form-page");
   const ticketPage = document.getElementById("ticket-page");
   const ticketPersonName = document.getElementById("ticket-person");
   const gitName = document.getElementById('ticket-gitname');
-  const onTicketImage = document.getElementById('ticket-img');
   const ticketNo = document.getElementById('ticket-no');
   event.preventDefault();
   ticketTitle.innerText = title;
   ticketMail.innerText = email;
   ticketPersonName.innerText = title;
   gitName.innerText = gitUserName;
-
-
-  // const reader = new FileReader(); // Create a FileReader object
-
-  // reader.onload = function (e) {
-  //   onTicketImage.src = e.target.result; // Set the <img> src to the file's data URL
-    // ticketImg.style.display = "block"; // Make the <img> visible
-  // };
-
-  // reader.readAsDataURL(imageFile); // Read the file as a data URL
-  // ticketImg.setAttribute('src', image)
   const number = Math.floor(Math.random()*99999);
   console.log(number);
   ticketNo.innerText = "#" + number;
   
-  formPage.classList.add("hidden");
-  ticketPage.classList.remove("hidden");
+  if(imgArr.length > 0) {
+    if(title) {
+      if(email.includes('@') && email.endsWith('.com')) {
+        if(gitUserName && gitUserName.startsWith('@')) {
+          formPage.classList.add("hidden");
+          ticketPage.classList.remove("hidden");
+        }
+        else {
+          document.getElementById('git-err').classList.remove('hidden');
+        }
+      }
+      else {
+        document.getElementById('email-err').classList.remove('hidden');
+      }
+    }
+    else {
+      document.getElementById('title-err').classList.remove('hidden');
+    }
+  }
+  else{
+    alert('enter your image!')
+  }
 });

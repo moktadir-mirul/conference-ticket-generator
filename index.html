@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/5e9ebfc54c.js" crossorigin="anonymous"></script>
     <style>
         .incon {
             font-family: "Inconsolata", monospace;
@@ -55,7 +57,7 @@
     </style>
 </head>
 <body class="incon">
-    <main class="min-h-screen mx-auto back-ground text-center pb-10">
+    <main class="min-h-screen mx-auto back-ground text-center pb-10 px-3 md:px-0">
         <div class="py-5 lg:py-10">
             <img class="w-60 md:w-80 mx-auto" src="images/logo-full.svg" alt="Conference Logo">
         </div>
@@ -85,22 +87,22 @@
                     <div class="space-y-2">
                         <h1 class="text-left text-gray-300 mt-5">Full Name</h1>
                         <input id="title" type="text" name="" class="indent-2 text-gray-100 text-lg rounded-lg h-12 focus:border-gray-200 bg-transparent backdrop-blur-[3px] w-full focus:outline-2 focus:outline-gray-200 focus:outline-offset-4 focus:border-2 glass-effect placeholder:text-gray-300" placeholder="Enter full name">
-                        <div class="hidden">
-                            <h4 class="flex gap-2 text-sm"><img src="images/icon-info.svg" alt="">Please enter a valid name</h4>
+                        <div id="title-err" class="hidden text-red-500">
+                            <h4 class="flex gap-2 text-sm"><i class="fa-regular fa-circle-info"></i> Please enter a valid name</h4>
                         </div>
                     </div>
                     <div class="space-y-2">
                         <h1 class="text-left text-gray-300">Your Email</h1>
                         <input id="email" type="email" name="" class="w-full text-gray-100 text-lg bg-transparent backdrop-blur-[3px] placeholder:text-gray-300 rounded-lg h-12 indent-2 focus:outline-2 focus:outline-gray-200 focus:outline-offset-4 focus:border-2 focus:border-gray-200 glass-effect" placeholder="example@email.com" >
-                        <div class="hidden">
-                            <h4 class="flex gap-2 text-sm"><img src="images/icon-info.svg" alt="">Please enter a valid email address</h4>
+                        <div id="email-err" class="hidden text-red-500">
+                            <h4 class="flex gap-2 text-sm"><i class="fa-regular fa-circle-info"></i> Please enter a valid email address</h4>
                         </div>
                     </div>
                     <div class="space-y-2">
                         <h1 class="text-left text-gray-300">Github User Name</h1>
                         <input type="text" name="" placeholder="@YourUserName" id="git-name" class="rounded-lg text-gray-100 text-lg bg-transparent backdrop-blur-[3px] h-12 indent-2 placeholder:text-gray-300 w-full focus:outline-2 focus:outline-gray-200 focus:outline-offset-4 focus:border-2 focus:border-gray-200 glass-effect focus:bg-transparent">
-                        <div class="hidden">
-                            <h4 class="flex gap-2 text-sm"><img src="images/icon-info.svg" alt="">Please enter a valid github username</h4>
+                        <div id="git-err" class="hidden text-red-500">
+                            <h4 class="flex gap-2 text-sm"><i class="fa-regular fa-circle-info"></i> Please enter a valid github username</h4>
                         </div>
                     </div>
                     <input type="submit" class="btn btn-lg w-full bg-[#F57261] text-black text-base font-bold border-none mb-5 shadow-none hover:bg-rose-800 duration-200 rounded-lg" id="submit-btn" value="Generate my ticket">
@@ -118,7 +120,7 @@
             <div class="relative ticket-container flex flex-col justify-between">
                 <header class="space-y-2 text-left text-gray-300">
                     <img class="w-6/12" src="images/logo-full.svg" alt="Conference Logo">
-                    <p class="indent-20">March 31 2025 / Uttara , Dhaka</p>
+                    <p class="indent-5 md:indent-9 lg:indent-20">March 31 2025 / Uttara , Dhaka</p>
                 </header>
                 <footer class="flex gap-4 relative bottom-0 left-0 text-gray-200">
                     <img id="ticket-img" src="images/image-avatar.jpg" alt="" class="w-16 rounded-xl">
