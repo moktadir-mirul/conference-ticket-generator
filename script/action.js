@@ -85,6 +85,7 @@ function unhighlight() {
     clickInput(); 
   }
   removeBtn.addEventListener('click', (event) => {
+    event.preventDefault();
     event.stopPropagation();
     imagePre.src = 'images/icon-upload.svg';
     onTicketImage.src = '';
@@ -109,13 +110,6 @@ form.addEventListener("submit", function (event) {
   const onTicketImage = document.getElementById('ticket-img');
   const ticketNo = document.getElementById('ticket-no');
   event.preventDefault();
-  console.log("hello");
-  console.log(imageFile);
-  console.log(imageFile);
-  console.log(title);
-  console.log(email);
-  console.log(ticketTitle);
-  console.log(ticketMail);
   ticketTitle.innerText = title;
   ticketMail.innerText = email;
   ticketPersonName.innerText = title;
