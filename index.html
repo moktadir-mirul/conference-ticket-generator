@@ -47,7 +47,6 @@
             transition: 0.3s;
         }
         .glass-effect:hover{
-            /* From https://css.glass */
             background: rgba(255, 255, 255, 0.29);
             border-radius: 8px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -55,6 +54,8 @@
             -webkit-backdrop-filter: blur(6.1px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+        .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
     </style>
 </head>
 <body class="incon">
@@ -126,7 +127,7 @@
                 <footer class="flex gap-4 relative bottom-0 left-0 text-gray-200">
                     <img id="ticket-img" src="images/image-avatar.jpg" alt="" class="w-16 rounded-xl">
                     <div>
-                        <h1 id="ticket-person" class="text-left font-bold text-2xl">Mirul Moktadir khan</h1>
+                        <h1 id="ticket-person" class="text-left font-bold text-xl md:text-2xl">Mirul Moktadir khan</h1>
                         <p class="flex gap-2 items-center">
                             <img src="images/icon-github.svg" alt="">
                             <span id="ticket-gitname" class="text-lg">@mirul-moktadir</span>
@@ -137,7 +138,10 @@
         </div>
         </div>
     </main>
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+        Coded by <a href="https://github.com/moktadir-mirul" target="_blank">Mirul Moktadir Khan</a>.
+      </div>
     <script src="./script/action.js"></script>
-    <!-- <script src="imgUpload.js"></script> -->
 </body>
 </html>
