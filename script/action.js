@@ -1,120 +1,121 @@
 const form = document.querySelector("form");
+const dropArea = document.getElementById("input-area");
+const fileInput = document.getElementById("file-input");
+const imagePre = document.getElementById("check-img");
+const onTicketImage = document.getElementById("ticket-img");
+const dragDrop = document.getElementById("drag-drop");
+const imgBtns = document.getElementById("img-btns");
+const changeBtn = document.getElementById("change-imgBtn");
+const removeBtn = document.getElementById("rmv-img");
+let imgArr = [];
 
-  const dropArea = document.getElementById('input-area');
-  const fileInput = document.getElementById('file-input');
-  const imagePre = document.getElementById('check-img');
-  const onTicketImage = document.getElementById('ticket-img');
-  const dragDrop = document.getElementById('drag-drop');
-  const imgBtns = document.getElementById('img-btns');
-  const changeBtn = document.getElementById('change-imgBtn');
-  const removeBtn = document.getElementById('rmv-img');
+["dragenter", "dragover", "dragleave", "drop"].forEach((item) => {
+  dropArea.addEventListener(item, preventDefaults, false);
+  document.body.addEventListener(item, preventDefaults, false);
+});
 
-  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((item) => {
-      dropArea.addEventListener(item, preventDefaults, false);
-      document.body.addEventListener(item, preventDefaults, false);
-  })
+dropArea.addEventListener("dragenter", highlight, false);
+dropArea.addEventListener("dragover", highlight, false);
+dropArea.addEventListener("dragleave", unhighlight, false);
+dropArea.addEventListener("drop", unhighlight, false);
 
+dropArea.addEventListener("drop", handleDrop, false);
 
-  dropArea.addEventListener('dragenter', highlight, false);
-  dropArea.addEventListener('dragover', highlight, false);
-  dropArea.addEventListener('dragleave', unhighlight, false);
-  dropArea.addEventListener('drop', unhighlight, false);
+fileInput.addEventListener("change", (e) => {
+  const files = e.target.files;
+  handleFiles(files);
+});
 
-  dropArea.addEventListener('drop', handleDrop, false);
-  // dropArea.addEventListener('click', clickInput);
-
-  fileInput.addEventListener('change', (e) => {
-    dragDrop.classList.add('hidden');
-    imgBtns.classList.remove('hidden');
-    const files = e.target.files;
-    handleFiles(files)});
-  
-  function preventDefaults(e) {
-      e.preventDefault();
-      e.stopPropagation();
-  }
-
-  function clickInput () {
-    fileInput.click();
-  }
-
-  function highlight() {
-    dropArea.classList.add('high-light');
-  }
-
-function unhighlight() {
-    dropArea.classList.remove('high-light');
+function preventDefaults(e) {
+  e.preventDefault();
+  e.stopPropagation();
 }
 
+function clickInput() {
+  fileInput.click();
+}
 
-  function handleDrop (e) {
-      e.preventDefault();
-      let data = e.dataTransfer;
-      let files = data.files;
-      handleFiles(files);
-      dragDrop.classList.add('hidden');
-      imgBtns.classList.remove('hidden');
-  }
-  
-  let imgArr = [];
+function highlight() {
+  dropArea.classList.add("high-light");
+}
 
-  function handleFiles(allFiles){
-      console.log(arguments);
-      const file = allFiles[0];
-      console.log(allFiles, "handlefiles");
-      console.log(file, "only file");
-      imgArr.push(file);
-      
-    if(imgArr.length <= 0) {
-        removeImage();
-        return;
-    }
-    const reader = new FileReader();
-      
-        reader.readAsDataURL(imgArr[0]);
-        
-        reader.onload = function () {
-          
-          imagePre.src = reader.result;
-          onTicketImage.src = reader.result;
-          
-     
+function unhighlight() {
+  dropArea.classList.remove("high-light");
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  let data = e.dataTransfer;
+  let files = data.files;
+  handleFiles(files);
+}
+
+function handleFiles(allFiles) {
+  const file = allFiles[0];
+  imgArr.push(file);
+  if (
+    file.name.split(".")[1] === "jpg" ||
+    file.name.split(".")[1] === "png" ||
+    file.name.split(".")[1] === "jpeg"
+  ) {
+    if (file.size <= 512000) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = function () {
+        imagePre.src = reader.result;
+        onTicketImage.src = reader.result;
+
+        dragDrop.classList.add("hidden");
+        imgBtns.classList.remove("hidden");
         dropArea.removeAttribute("onClick");
-      }
-  }
-      // reader.onload = function () {
-      //     imagePre.src = reader.result;
-      //     onTicketImage.src = reader.result;
-      // }
-      // dropArea.removeEventListener('click', clickInput);
-  
-
-  function changeImage() {
-    clickInput(); 
-  }
- const  removeImage = () => {
-    imagePre.src = 'images/icon-upload.svg';
-    onTicketImage.src = '';
-    dragDrop.classList.remove('hidden');  
-    imgBtns.classList.add('hidden');
-    dropArea.setAttribute('onClick', 'clickInput()');
+      };
+    } else {
+      alert("Image file size too large!");
+      imgArr.pop();
+      dragDrop.classList.remove("hidden");
+      imgBtns.classList.add("hidden");
+    }
+  } else {
+    alert("invalid image type");
     imgArr.pop();
- }
-  removeBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    imagePre.src = 'images/icon-upload.svg';
-    onTicketImage.src = '';
-    dragDrop.classList.remove('hidden');  
-    imgBtns.classList.add('hidden');
-    dropArea.setAttribute('onClick', 'clickInput()');
-    imgArr.pop();
-    console.log(imgArr);
-  })
+    dragDrop.classList.remove("hidden");
+    imgBtns.classList.add("hidden");
+  }
+}
 
-  document.getElementById("title").addEventListener('keyup', (e) => {
-    document.getElementById('title-err').classList.add('hidden');
-  })
+function changeImage() {
+  clickInput();
+}
+const removeImage = () => {
+  imagePre.src = "images/icon-upload.svg";
+  onTicketImage.src = "";
+  dragDrop.classList.remove("hidden");
+  imgBtns.classList.add("hidden");
+  dropArea.setAttribute("onClick", "clickInput()");
+  imgArr.pop();
+};
+removeBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  imagePre.src = "images/icon-upload.svg";
+  onTicketImage.src = "";
+  dragDrop.classList.remove("hidden");
+  imgBtns.classList.add("hidden");
+  dropArea.setAttribute("onClick", "clickInput()");
+  imgArr.pop();
+});
+
+document.getElementById("title").addEventListener("keyup", () => {
+  document.getElementById("title-err").classList.add("hidden");
+});
+document.getElementById("email").addEventListener("keyup", function () {
+  document.getElementById("email-err").classList.add("hidden");
+});
+document.getElementById("git-name").addEventListener("keyup", function () {
+  document.getElementById("git-err").classList.add("hidden");
+});
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -126,37 +127,34 @@ form.addEventListener("submit", function (event) {
   const formPage = document.getElementById("form-page");
   const ticketPage = document.getElementById("ticket-page");
   const ticketPersonName = document.getElementById("ticket-person");
-  const gitName = document.getElementById('ticket-gitname');
-  const ticketNo = document.getElementById('ticket-no');
+  const gitName = document.getElementById("ticket-gitname");
+  const ticketNo = document.getElementById("ticket-no");
   event.preventDefault();
   ticketTitle.innerText = title;
   ticketMail.innerText = email;
   ticketPersonName.innerText = title;
   gitName.innerText = gitUserName;
-  const number = Math.floor(Math.random()*99999);
+  const number = Math.floor(Math.random() * 99999);
   console.log(number);
   ticketNo.innerText = "#" + number;
-  
-  if(imgArr.length > 0) {
-    if(title) {
-      if(email.includes('@') && email.endsWith('.com')) {
-        if(gitUserName && gitUserName.startsWith('@')) {
+  let newTitle = title.trim();
+  console.log(imgArr.length, "clicked");
+  if (imgArr.length > 0) {
+    if (newTitle) {
+      if (email.includes("@") && email.endsWith(".com")) {
+        if (gitUserName && gitUserName.startsWith("@")) {
           formPage.classList.add("hidden");
           ticketPage.classList.remove("hidden");
+        } else {
+          document.getElementById("git-err").classList.remove("hidden");
         }
-        else {
-          document.getElementById('git-err').classList.remove('hidden');
-        }
+      } else {
+        document.getElementById("email-err").classList.remove("hidden");
       }
-      else {
-        document.getElementById('email-err').classList.remove('hidden');
-      }
+    } else {
+      document.getElementById("title-err").classList.remove("hidden");
     }
-    else {
-      document.getElementById('title-err').classList.remove('hidden');
-    }
-  }
-  else{
-    alert('enter your image!')
+  } else {
+    alert("Enter your image!");
   }
 });
