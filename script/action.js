@@ -56,7 +56,8 @@ function handleFiles(allFiles) {
   if (
     file.name.split(".")[1] === "jpg" ||
     file.name.split(".")[1] === "png" ||
-    file.name.split(".")[1] === "jpeg"
+    file.name.split(".")[1] === "jpeg" ||
+    file.name.split(".")[1] === "JPG"
   ) {
     if (file.size <= 512000) {
       const reader = new FileReader();
@@ -76,12 +77,16 @@ function handleFiles(allFiles) {
       imgArr.pop();
       dragDrop.classList.remove("hidden");
       imgBtns.classList.add("hidden");
+      dropArea.setAttribute("onClick", "clickInput()");
+      imagePre.src = "images/icon-upload.svg";
     }
   } else {
     alert("invalid image type");
     imgArr.pop();
     dragDrop.classList.remove("hidden");
     imgBtns.classList.add("hidden");
+    dropArea.setAttribute("onClick", "clickInput()");
+    imagePre.src = "images/icon-upload.svg";
   }
 }
 
