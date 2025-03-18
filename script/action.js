@@ -143,11 +143,13 @@ form.addEventListener("submit", function (event) {
   console.log(number);
   ticketNo.innerText = "#" + number;
   let newTitle = title.trim();
+  let newMail = email.trim();
+  let newGitName = gitUserName.trim();
   console.log(imgArr.length, "clicked");
   if (imgArr.length > 0) {
     if (newTitle) {
-      if (email.includes("@") && email.endsWith(".com")) {
-        if (gitUserName && gitUserName.startsWith("@")) {
+      if (newMail.includes("@") && newMail.endsWith(".com")) {
+        if (newGitName && newGitName.startsWith("@")) {
           formPage.classList.add("hidden");
           ticketPage.classList.remove("hidden");
         } else {
